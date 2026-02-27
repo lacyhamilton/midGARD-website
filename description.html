@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="MidGARD High Level Requirements — Team Odin (NAU)." />
         <meta name="author" content="" />
-        <title>Requirements | MidGARD</title>
+        <title>Description | MidGARD</title>
         <!-- Favicon-->
         <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
         <!-- Font Awesome icons (free version)-->
@@ -88,7 +88,7 @@
                     <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
                         <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
                         <li class="nav-item"><a class="nav-link" href="team.html">Team</a></li>
-                        <li class="nav-item"><a class="nav-link" href="description.html">Description</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="description.html">Description</a></li>
                         <li class="nav-item"><a class="nav-link" href="requirements.html">Requirements</a></li>
                         <li class="nav-item"><a class="nav-link" href="solution.html">Solution</a></li>
                         <li class="nav-item"><a class="nav-link active" href="documents.html">Documents</a></li>
@@ -101,92 +101,51 @@
         <header class="masthead" style="padding: 10rem 0 4rem;">
             <div class="container">
                 <div class="masthead-subheading">MidGARD</div>
-                <div class="masthead-heading text-uppercase">Documents Archive</div>
+                <div class="masthead-heading text-uppercase">Project Description</div>
             </div>
         </header>
 
-        <!-- Document Archive -->
-        <section class="content-section" id="archive">
+        <!-- Project Overview -->
+        <section class="content-section" id="project-overview">
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
 
-                        <h2 class="section-heading text-uppercase mb-4">Team Document Archive</h2>
+                        <h2 class="section-heading text-uppercase mb-4">Project Overview</h2>
+
                         <p class="lead-text">
-                            This archive contains our core team documents, including our Team Inventory and Team Standards.
-                            Additional documents can be added here as the project progresses.
+                            SanDisk develops high-performance storage firmware that must undergo rigorous regression 
+                            testing before release. As firmware systems increase in complexity, manually creating and 
+                            maintaining regression test sequences becomes time-consuming, difficult to scale, and prone 
+                            to incomplete coverage. This creates bottlenecks in the development cycle and increases the 
+                            risk of subtle defects escaping into production.
                         </p>
 
-                        <div class="list-group mt-4">
+                        <p class="lead-text">
+                            MidGARD is the automated solution our team is designing to address this problem. The system 
+                            will generate regression test sequences directly from formal TLA+ specifications. By leveraging 
+                            the TLC model checker to explore valid system behaviors, MidGARD will transform formally verified 
+                            state spaces into structured, reproducible, and high-coverage test suites. Rather than relying on 
+                            manually written test flows, engineers will be able to derive tests systematically from formal models.
+                        </p>
 
-                            <!-- Team Inventory -->
-                            <a href="assets/docs/Team Inventory.pdf" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <span><i class="fas fa-file-alt text-primary me-2"></i>Team Inventory</span>
-                                <span class="badge bg-primary rounded-pill">PDF</span>
-                            </a>
+                        <hr class="my-5">
 
-                            <!-- Team Standards -->
-                            <a href="assets/docs/Team Standards.pdf" class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <span><i class="fas fa-file-alt text-primary me-2"></i>Team Standards</span>
-                                <span class="badge bg-primary rounded-pill">PDF</span>
-                            </a>
+                        <p class="text-muted">
+                            The initial concept for this project was provided by our sponsor in the form of a 
+                            <a href="assets/docs/SanDisk_MidGARD.pdf" target="_blank">Capstone project proposal</a>. 
+                            MidGARD represents our refined system design developed in collaboration with the sponsor.
+                        </p>
+
+                        <!-- Optional Diagram Placeholder -->
+                        <div class="mt-4">
+                            <img src="assets/img/diagram/MidGardDiagram.png" 
+                                class="img-fluid rounded shadow" 
+                                alt="MidGARD system pipeline diagram">
                         </div>
                     </div>
                 </div>
             </div>
-        </section>
-
-        <!-- External Documentation Section -->
-        <section class="content-section" id="external-resources">
-            <div class="container">
-                <div class="row justify-content-center">
-                    <div class="col-lg-10">
-
-                        <h2 class="section-heading text-uppercase mb-4">External Documentation & Resources</h2>
-                        <p class="lead-text">
-                            These links provide reference material and official documentation for the tools,
-                            languages, and formal methods used throughout the MidGARD project. This section
-                            can grow as we incorporate additional technologies.
-                        </p>
-
-                        <div class="list-group mt-4">
-
-                            <!-- TLA+ -->
-                            <a href="https://lamport.azurewebsites.net/tla/tla.html"
-                            target="_blank"
-                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <span><i class="fas fa-external-link-alt text-primary me-2"></i>TLA+ Specification Language</span>
-                                <span class="badge bg-secondary rounded-pill">Website</span>
-                            </a>
-
-                            <!-- TLC Model Checker -->
-                            <a href="https://lamport.azurewebsites.net/tla/tlc.html"
-                            target="_blank"
-                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <span><i class="fas fa-external-link-alt text-primary me-2"></i>TLC Model Checker</span>
-                                <span class="badge bg-secondary rounded-pill">Website</span>
-                            </a>
-
-                            <!-- Rust Language -->
-                            <a href="https://www.rust-lang.org/learn"
-                            target="_blank"
-                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <span><i class="fas fa-external-link-alt text-primary me-2"></i>Rust Programming Language</span>
-                                <span class="badge bg-secondary rounded-pill">Website</span>
-                            </a>
-
-                            <!-- Graphviz -->
-                            <a href="https://graphviz.org/documentation/"
-                            target="_blank"
-                            class="list-group-item list-group-item-action d-flex justify-content-between align-items-center">
-                                <span><i class="fas fa-external-link-alt text-primary me-2"></i>Graphviz DOT Documentation</span>
-                                <span class="badge bg-secondary rounded-pill">Website</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
         <!-- Footer -->
         <footer class="footer py-4">
