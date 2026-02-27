@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="MidGARD High Level Requirements — Team Odin (NAU)." />
+        <meta name="author" content="" />
+        <title>Requirements | MidGARD</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .content-section {
+                padding: 6rem 0 4rem;
+            }
+            .content-section h2 {
+                margin-bottom: 1.5rem;
+            }
+            .content-section h3 {
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            .content-section p {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                color: #555;
+            }
+            .content-section .lead-text {
+                font-size: 1.15rem;
+                color: #444;
+            }
+            .req-card {
+                background: #fff;
+                border-left: 4px solid #fed136;
+                border-radius: 0.35rem;
+                padding: 1.25rem 1.5rem;
+                margin-bottom: 1.25rem;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            }
+            .req-card h5 {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 0.95rem;
+                color: #212529;
+                margin-bottom: 0.5rem;
+            }
+            .req-card p {
+                margin-bottom: 0;
+                font-size: 1rem;
+            }
+            .dev-table th {
+                background-color: #212529;
+                color: #fff;
+                font-family: 'Montserrat', sans-serif;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                letter-spacing: 0.05em;
+            }
+            .dev-table td {
+                vertical-align: top;
+                font-size: 1rem;
+                color: #555;
+            }
+            .dev-table .phase-label {
+                font-weight: 700;
+                color: #212529;
+                white-space: nowrap;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="assets/img/logos/ODIN-TEAM-LOGO.png" alt="Team Odin logo" style="height: 45px;" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="requirements.html">Requirements</a></li>
+                        <li class="nav-item"><a class="nav-link" href="solution.html">Solution</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="masthead" style="padding: 10rem 0 4rem;">
+            <div class="container">
+                <div class="masthead-subheading">MidGARD</div>
+                <div class="masthead-heading text-uppercase">High Level Requirements</div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <section class="content-section" id="requirements">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+
+                        <p class="lead-text">MidGARD is a Rust-based command-line tool suite that accepts TLA+ formal specifications, leverages the TLC model checker, and performs directed-graph analysis to produce scientifically derived test sequences for regression deployment. The requirements below capture what the system must do, and are organized around the major functional areas of the pipeline.</p>
+
+                        <!-- Functional Requirements -->
+                        <h3 class="section-heading text-uppercase">Functional Requirements</h3>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-check-circle text-primary me-2"></i>TLA+ Integration &amp; Model Checking</h5>
+                            <p>The system must accept a TLA+ specification as input and invoke the TLC model checker to verify correctness. If the specification passes, the system must generate a Graphviz DOT directed graph of state predicates (nodes) and actions (edges). If the state space is too large for direct DOT generation, the system must support TLC&rsquo;s VIEW and ALIAS options to abstract the model and reduce the state space to a manageable size.</p>
+                        </div>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-check-circle text-primary me-2"></i>Graph Preprocessing</h5>
+                            <p>The system must parse and clean the generated DOT file, including removal of self-referencing edges caused by TLA+&rsquo;s stuttering invariance. Additional cleanup steps (e.g., removing unreachable nodes, collapsing equivalent states) should be configurable. The cleaned graph must be stored in a format amenable to efficient algorithmic traversal.</p>
+                        </div>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-check-circle text-primary me-2"></i>Test Sequence Generation</h5>
+                            <p>Given a cleaned digraph, the system must algorithmically generate a set of test sequences (routes through the graph). Generation must support at least two modes: (a)&nbsp;full-coverage mode, which produces a minimal set of routes that traverse all nodes and edges, and (b)&nbsp;n-test mode, which produces exactly <em>n</em> routes that are as mutually distinct as possible. Generation must be seeded (randomly or by a user-provided value) for reproducibility. A &ldquo;set of seeds&rdquo; mechanism should allow users to produce families of fully distinct route sets.</p>
+                        </div>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-check-circle text-primary me-2"></i>Test Ordering &amp; Output</h5>
+                            <p>The system must reorder the generated test sequences according to a user-specified criterion (e.g., random shuffle, coverage priority, edge diversity) so that any prefix of the ordered list still constitutes a reasonable test suite. The final output must be a structured, machine-readable list of test sequences suitable for integration into SanDisk&rsquo;s regression deployment workflows.</p>
+                        </div>
+
+                        <!-- Non-Functional Requirements -->
+                        <h3 class="section-heading text-uppercase">Non-Functional Requirements</h3>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-cog text-primary me-2"></i>Language &amp; Toolchain</h5>
+                            <p>The core system must be implemented in Rust, leveraging Cargo and relevant crates for graph analysis (e.g., petgraph). The TLC model checker (Java-based, requiring OpenJDK &ge; 11.0.6) will be invoked as an external process.</p>
+                        </div>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-cog text-primary me-2"></i>Reproducibility</h5>
+                            <p>All outputs must be fully reproducible given the same specification, configuration, and seed. Deterministic behavior is essential for regression validation.</p>
+                        </div>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-cog text-primary me-2"></i>Documentation</h5>
+                            <p>The project must deliver a detailed reference manual for SanDisk product teams, a well-commented codebase, and a complete private GitHub repository. Documentation should be sufficient for a test engineer unfamiliar with the tool to run it independently.</p>
+                        </div>
+
+                        <div class="req-card">
+                            <h5><i class="fas fa-cog text-primary me-2"></i>Extensibility</h5>
+                            <p>The architecture should be modular enough to accommodate new graph analysis algorithms, additional criteria for test generation, and future integration with SanDisk&rsquo;s internal tooling.</p>
+                        </div>
+
+                        <!-- Development Process -->
+                        <h3 class="section-heading text-uppercase">Development Process</h3>
+
+                        <p>The project spans two semesters with a team of four students, guided by a project mentor and a client from SanDisk. The development process is structured as follows:</p>
+
+                        <div class="table-responsive mt-3">
+                            <table class="table table-bordered dev-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 25%;">Phase</th>
+                                        <th>Activities</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="phase-label">Spring (Jan&ndash;May)</td>
+                                        <td>Requirements gathering, TLA+ onboarding, architecture design, DOT parsing prototype, initial graph analysis algorithms, documentation framework.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="phase-label">Summer</td>
+                                        <td>Project paused. The team will reconvene in Fall to begin full implementation.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="phase-label">Fall (Aug&ndash;Dec)</td>
+                                        <td>Full pipeline implementation, test generation engine, ordering/output module, end-to-end testing with SanDisk-provided specifications, final documentation and delivery.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-start">
+                        &copy; <span id="year"></span> Team Odin &mdash; MidGARD
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#page-top">Back to top</a>
+                        <a class="link-dark text-decoration-none" href="#" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
