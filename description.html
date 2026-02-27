@@ -91,7 +91,7 @@
                         <li class="nav-item"><a class="nav-link active" href="description.html">Description</a></li>
                         <li class="nav-item"><a class="nav-link" href="requirements.html">Requirements</a></li>
                         <li class="nav-item"><a class="nav-link" href="solution.html">Solution</a></li>
-                        <li class="nav-item"><a class="nav-link active" href="documents.html">Documents</a></li>
+                        <li class="nav-item"><a class="nav-link" href="documents.html">Documents</a></li>
                     </ul>
                 </div>
             </div>
@@ -146,6 +146,95 @@
                     </div>
                 </div>
             </div>
+
+        <!-- Technologies -->
+        <section class="content-section" id="technologies">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+
+                        <h2 class="section-heading text-uppercase mb-4">Technologies</h2>
+
+                        <p class="lead-text mb-4">
+                            MidGARD is built using a focused set of tools chosen for their reliability, performance, 
+                            and support for formal modeling and graph‑based analysis. Each technology plays a specific 
+                            role in enabling automated test generation from TLA+ specifications.
+                        </p>
+
+                        <!-- TLA+ -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-code-branch text-primary me-2"></i>TLA+ Formal Specification Language</h5>
+                            <p>
+                                We use TLA+ to formally describe system behavior in a mathematically precise way, ensuring 
+                                that all generated tests originate from verified system logic. The VSCode TLA+ extension 
+                                supports authoring, validating, and maintaining these specifications throughout development.
+                            </p>
+                        </div>
+
+                        <!-- Rust -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-gears text-primary me-2"></i>Rust Programming Language</h5>
+                            <p>
+                                Rust powers the MidGARD toolchain, giving us memory‑safe performance for graph processing 
+                                and deterministic test generation. Cargo and the <em>petgraph</em> crate allow us to build 
+                                a modular, efficient pipeline capable of handling large state spaces.
+                            </p>
+                        </div>
+
+                        <!-- TLC -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-check-circle text-primary me-2"></i>TLC Model Checker (OpenJDK ≥ 11.0.6)</h5>
+                            <p>
+                                TLC explores all valid behaviors of a TLA+ specification and produces the raw state graph 
+                                that MidGARD analyzes. We run TLC using OpenJDK to ensure compatibility, reproducibility, 
+                                and freedom from Oracle licensing restrictions.
+                            </p>
+                        </div>
+
+                        <!-- Graphviz -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-project-diagram text-primary me-2"></i>Graphviz & DOT Visualization</h5>
+                            <p>
+                                Graphviz generates the DOT graphs that represent system state transitions, which we then 
+                                clean and analyze inside MidGARD. The Graphviz Interactive Preview extension helps us 
+                                inspect and validate graph structure during development.
+                            </p>
+                        </div>
+
+                        <!-- VSCode -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-laptop-code text-primary me-2"></i>Visual Studio Code & Extensions</h5>
+                            <p>
+                                VSCode is our primary development environment, supported by Rust‑Analyzer, TLA+, Graphviz 
+                                Preview, and Live Share. These tools streamline collaboration, debugging, and consistent 
+                                development across the team.
+                            </p>
+                        </div>
+
+                        <!-- Cargo Tools -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-boxes text-primary me-2"></i>Cargo Tooling & Rust Ecosystem</h5>
+                            <p>
+                                We rely on Cargo extensions and Rust’s ecosystem to manage dependencies, run tests, and 
+                                support graph‑analysis workflows. This tooling keeps the codebase maintainable and ready 
+                                for future extensions.
+                            </p>
+                        </div>
+
+                        <!-- Deliverables -->
+                        <div class="req-card">
+                            <h5><i class="fas fa-book text-primary me-2"></i>Documentation & Deliverables</h5>
+                            <p>
+                                We maintain a professionally written reference manual and a fully documented private 
+                                GitHub repository. These deliverables ensure SanDisk can adopt, maintain, and extend 
+                                MidGARD as needed.
+                            </p>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </section>
 
         <!-- Footer -->
         <footer class="footer py-4">
