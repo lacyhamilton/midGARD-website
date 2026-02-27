@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="MidGARD Envisioned Solution — Team Odin (NAU)." />
+        <meta name="author" content="" />
+        <title>Solution | MidGARD</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v6.3.0/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <style>
+            .content-section {
+                padding: 6rem 0 4rem;
+            }
+            .content-section h2 {
+                margin-bottom: 1.5rem;
+            }
+            .content-section h3 {
+                margin-top: 2.5rem;
+                margin-bottom: 1rem;
+            }
+            .content-section p {
+                font-size: 1.05rem;
+                line-height: 1.8;
+                color: #555;
+            }
+            .content-section .lead-text {
+                font-size: 1.15rem;
+                color: #444;
+            }
+            .pipeline-table th {
+                background-color: #212529;
+                color: #fff;
+                font-family: 'Montserrat', sans-serif;
+                text-transform: uppercase;
+                font-size: 0.85rem;
+                letter-spacing: 0.05em;
+            }
+            .pipeline-table td {
+                vertical-align: top;
+                font-size: 1rem;
+                color: #555;
+            }
+            .pipeline-table .stage-num {
+                font-weight: 700;
+                font-size: 1.2rem;
+                color: #fed136;
+                text-align: center;
+            }
+            .pipeline-table .stage-name {
+                font-weight: 700;
+                color: #212529;
+                white-space: nowrap;
+            }
+            .design-card {
+                background: #fff;
+                border-radius: 0.5rem;
+                padding: 1.5rem;
+                margin-bottom: 1.5rem;
+                box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+                border-top: 3px solid #fed136;
+            }
+            .design-card h5 {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                font-size: 1rem;
+                color: #212529;
+                margin-bottom: 0.6rem;
+            }
+            .design-card p {
+                margin-bottom: 0;
+            }
+            .open-q {
+                position: relative;
+                padding-left: 1.75rem;
+                margin-bottom: 0.9rem;
+                font-size: 1.05rem;
+                color: #555;
+                line-height: 1.7;
+            }
+            .open-q::before {
+                content: "\f059";
+                font-family: "Font Awesome 6 Free";
+                font-weight: 900;
+                position: absolute;
+                left: 0;
+                color: #fed136;
+            }
+        </style>
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="mainNav">
+            <div class="container">
+                <a class="navbar-brand" href="index.html"><img src="assets/img/logos/ODIN-TEAM-LOGO.png" alt="Team Odin logo" style="height: 45px;" /></a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+                    Menu
+                    <i class="fas fa-bars ms-1"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav text-uppercase ms-auto py-4 py-lg-0">
+                        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="requirements.html">Requirements</a></li>
+                        <li class="nav-item"><a class="nav-link active" href="solution.html">Solution</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Header -->
+        <header class="masthead" style="padding: 10rem 0 4rem;">
+            <div class="container">
+                <div class="masthead-subheading">MidGARD</div>
+                <div class="masthead-heading text-uppercase">Envisioned Solution</div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <section class="content-section" id="solution">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <div class="col-lg-10">
+
+                        <p class="lead-text">MidGARD is a Rust command-line tool suite that transforms TLA+ formal specifications into actionable regression test plans. As its name indicates&mdash;Model-initiated di-Graph Analysis for Regression Deployment&mdash;the process is <strong>model-initiated</strong>: the TLA+ specification model is what drives and initiates the entire pipeline, from graph generation through test sequence output. This bridges the gap between formal verification and practical test engineering by automating the creation of scientifically derived test sequences from mathematically verified models.</p>
+
+                        <p>The tool addresses a core challenge at SanDisk: the directed graphs generated from TLA+ specifications contain an enormous (effectively infinite) number of possible test paths, far too many for any human engineer to enumerate or evaluate. MidGARD replaces intuition-driven test planning with algorithmic analysis, producing a finite, high-confidence set of test sequences that cover the state space comprehensively.</p>
+
+                        <!-- System Architecture -->
+                        <h3 class="section-heading text-uppercase">System Architecture</h3>
+
+                        <p>The system is organized as a four-stage pipeline, where each stage is a distinct module that can also be invoked independently. The stages are designed to flow sequentially from specification to deployable test plan:</p>
+
+                        <div class="table-responsive mt-3 mb-4">
+                            <table class="table table-bordered pipeline-table">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 5%; text-align: center;">#</th>
+                                        <th style="width: 18%;">Stage</th>
+                                        <th>Description</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="stage-num">1</td>
+                                        <td class="stage-name">Model Checking</td>
+                                        <td>Accepts a TLA+ specification and invokes the TLC model checker as a subprocess. If the specification passes verification, TLC generates a Graphviz DOT file encoding the full state-transition digraph. For specifications with large state spaces, VIEW and ALIAS abstractions can be applied to reduce complexity before DOT generation.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stage-num">2</td>
+                                        <td class="stage-name">Graph Preprocessing</td>
+                                        <td>Parses the raw DOT file into an in-memory directed graph structure (likely using the petgraph crate). Cleans the graph by removing self-referencing edges (artifacts of TLA+ stuttering invariance), optionally collapsing equivalent states, and stripping unreachable nodes. The result is a lean, analysis-ready digraph.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stage-num">3</td>
+                                        <td class="stage-name">Analysis &amp; Generation</td>
+                                        <td>The core algorithmic engine. Applies directed-graph analysis techniques&mdash;including strongly connected component decomposition (Tarjan&rsquo;s), path enumeration, loop detection, and coverage algorithms&mdash;to generate test sequences. Supports full-coverage mode (all nodes and edges) and n-test mode (maximally distinct routes). All generation is seeded for reproducibility.</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="stage-num">4</td>
+                                        <td class="stage-name">Ordering &amp; Output</td>
+                                        <td>Reorders the generated test sequences by a user-chosen criterion (e.g., random, coverage-weighted, edge-diversity) so that any prefix of the list is a useful subset. Outputs a structured, machine-readable list of test sequences for deployment into SanDisk&rsquo;s regression workflows.</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Key Design Decisions -->
+                        <h3 class="section-heading text-uppercase">Key Design Decisions</h3>
+
+                        <div class="design-card">
+                            <h5><i class="fas fa-seedling text-primary me-2"></i>Seed-Based Reproducibility</h5>
+                            <p>Every run of the test generation engine accepts a seed value that deterministically controls all algorithmic decisions (path selection, tie-breaking, randomization). A given seed always produces the same output for the same graph. Users can also supply a &ldquo;seed set&rdquo;&mdash;a collection of seeds chosen to produce maximally distinct test suites&mdash;enabling teams to partition their regression efforts across complementary test plans.</p>
+                        </div>
+
+                        <div class="design-card">
+                            <h5><i class="fas fa-code-branch text-primary me-2"></i>Distinctness Heuristics</h5>
+                            <p>Defining what makes two test sequences &ldquo;distinct&rdquo; is a central open question. Our initial approach treats distinctness as a function of edge-set overlap: two routes are more distinct when they share fewer edges. We will also explore node-coverage diversity, loop-participation metrics, and other graph-theoretic distance measures as the project matures.</p>
+                        </div>
+
+                        <div class="design-card">
+                            <h5><i class="fas fa-cubes text-primary me-2"></i>Modular, Extensible Architecture</h5>
+                            <p>Each pipeline stage is a standalone Rust module with a well-defined interface. This allows SanDisk to swap in alternative algorithms (e.g., a different coverage strategy), add new preprocessing steps, or integrate additional output formats without modifying the rest of the pipeline.</p>
+                        </div>
+
+                        <!-- Open Questions -->
+                        <h3 class="section-heading text-uppercase">Open Questions &amp; Future Refinement</h3>
+
+                        <p>As MidGARD is still in early development (Spring 2026), several design questions remain open and will be refined through client collaboration and experimentation:</p>
+
+                        <div class="mt-3 mb-3">
+                            <p class="open-q">What precisely defines &ldquo;distinct&rdquo; between two test sequences? Edge overlap, node coverage, loop participation, or a composite metric?</p>
+                            <p class="open-q">Should the test set be static (fixed once generated) or should there be a dynamic/randomized element that changes across runs?</p>
+                            <p class="open-q">What additional metadata or constraints might accompany the digraph (e.g., edge weights, priority nodes, forbidden paths)?</p>
+                            <p class="open-q">How should the system handle graphs that are too large for exhaustive analysis? What approximation strategies are acceptable?</p>
+                            <p class="open-q">What output formats best integrate with SanDisk&rsquo;s existing regression deployment infrastructure?</p>
+                        </div>
+
+                        <p>These questions will be addressed iteratively through the Spring requirements phase, with the goal of having firm answers before full implementation begins in Fall 2026.</p>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="footer py-4">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 text-lg-start">
+                        &copy; <span id="year"></span> Team Odin &mdash; MidGARD
+                    </div>
+                    <div class="col-lg-6 text-lg-end">
+                        <a class="link-dark text-decoration-none me-3" href="#page-top">Back to top</a>
+                        <a class="link-dark text-decoration-none" href="#" target="_blank" rel="noopener">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            document.getElementById("year").textContent = new Date().getFullYear();
+        </script>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
