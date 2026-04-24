@@ -11314,3 +11314,18 @@ section#contact form#contactForm :-ms-input-placeholder {
   font-size: 0.9rem;
   font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
+
+.team-member img {
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.team-member img[src*="lacy_hamilton"] {
+  object-position: center 25%;
+}
+
+.team-member img[src*="Skyler"] {
+  object-position: 20% 25%;
+}
