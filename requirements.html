@@ -111,7 +111,7 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
 
-                        <p class="lead-text">MidGARD is a Rust-based command-line tool suite that accepts TLA+ formal specifications, leverages the TLC model checker, and performs directed-graph analysis to produce scientifically derived test sequences for regression deployment. The requirements below capture what the system must do, and are organized around the major functional areas of the pipeline.</p>
+                        <p class="lead-text">MidGARD is a Rust-based command-line tool suite that accepts TLA+ formal specifications, leverages the TLC Model Checker, and performs directed-graph analysis to produce structured, reproducible test sequences for regression testing. The requirements below capture what the system must do, and are organized around the major functional areas of the pipeline.</p>
 
                         <!-- Functional Requirements -->
                         <h3 class="section-heading text-uppercase">Functional Requirements</h3>
@@ -119,21 +119,41 @@
                         <div class="req-card">
                             <h5><i class="fas fa-check-circle text-primary me-2"></i>TLA+ Integration &amp; Model Checking</h5>
                             <p>The system must accept a TLA+ specification as input and invoke the TLC model checker to verify correctness. If the specification passes, the system must generate a Graphviz DOT directed graph of state predicates (nodes) and actions (edges). If the state space is too large for direct DOT generation, the system must support TLC&rsquo;s VIEW and ALIAS options to abstract the model and reduce the state space to a manageable size.</p>
+
+                            <p>
+                                Implementation will use Rust to invoke TLC as an external process, capture model-checking output, 
+                                and manage DOT file generation through a command-line workflow.
+                            </p>
                         </div>
 
                         <div class="req-card">
                             <h5><i class="fas fa-check-circle text-primary me-2"></i>Graph Preprocessing</h5>
                             <p>The system must parse and clean the generated DOT file, including removal of self-referencing edges caused by TLA+&rsquo;s stuttering invariance. Additional cleanup steps (e.g., removing unreachable nodes, collapsing equivalent states) should be configurable. The cleaned graph must be stored in a format amenable to efficient algorithmic traversal.</p>
+
+                            <p>
+                                Implementation will use Rust graph-processing logic, likely supported by the petgraph crate, to parse, 
+                                clean, and store the DOT graph in an efficient in-memory directed graph structure.
+                            </p>
                         </div>
 
                         <div class="req-card">
                             <h5><i class="fas fa-check-circle text-primary me-2"></i>Test Sequence Generation</h5>
                             <p>Given a cleaned digraph, the system must algorithmically generate a set of test sequences (routes through the graph). Generation must support at least two modes: (a)&nbsp;full-coverage mode, which produces a minimal set of routes that traverse all nodes and edges, and (b)&nbsp;n-test mode, which produces exactly <em>n</em> routes that are as mutually distinct as possible. Generation must be seeded (randomly or by a user-provided value) for reproducibility. A &ldquo;set of seeds&rdquo; mechanism should allow users to produce families of fully distinct route sets.</p>
+
+                            <p>
+                                Implementation will use graph traversal and coverage algorithms to generate candidate paths, compare 
+                                sequence distinctness, and produce reproducible outputs based on user-provided configuration and seed values.
+                            </p>
                         </div>
 
                         <div class="req-card">
                             <h5><i class="fas fa-check-circle text-primary me-2"></i>Test Ordering &amp; Output</h5>
-                            <p>The system must reorder the generated test sequences according to a user-specified criterion (e.g., random shuffle, coverage priority, edge diversity) so that any prefix of the ordered list still constitutes a reasonable test suite. The final output must be a structured, machine-readable list of test sequences suitable for integration into SanDisk&rsquo;s regression deployment workflows.</p>
+                            <p>The system must reorder the generated test sequences according to a user-specified criterion (e.g., random shuffle, coverage priority, edge diversity) so that any prefix of the ordered list still constitutes a reasonable test suite. The final output must be a structured, machine-readable list of test sequences, such as CSV or JSON, suitable for integration into SanDisk’s regression deployment workflows. A time-permitting extension may explore AI-assisted translation of generated sequences into more readable action steps for test engineers.</p>
+
+                            <p>
+                                Implementation will serialize generated sequences into structured output formats such as CSV or JSON, 
+                                depending on the format best suited for SanDisk’s testing workflow.
+                            </p>
                         </div>
 
                         <!-- Non-Functional Requirements -->
@@ -159,6 +179,14 @@
                             <p>The architecture should be modular enough to accommodate new graph analysis algorithms, additional criteria for test generation, and future integration with SanDisk&rsquo;s internal tooling.</p>
                         </div>
 
+                        <div class="req-card">
+                            <h5><i class="fas fa-cog text-primary me-2"></i>Usability</h5>
+                            <p>
+                                The command-line interface should be clear enough for SanDisk engineers to run the tool, 
+                                configure generation options, and interpret output files without needing to modify the source code.
+                            </p>
+                        </div>
+
                         <!-- Development Process -->
                         <h3 class="section-heading text-uppercase">Development Process</h3>
 
@@ -175,7 +203,7 @@
                                 <tbody>
                                     <tr>
                                         <td class="phase-label">Spring (Jan&ndash;May)</td>
-                                        <td>Requirements gathering, TLA+ onboarding, architecture design, DOT parsing prototype, initial graph analysis algorithms, documentation framework.</td>
+                                        <td>Completed requirements gathering, TLA+ onboarding, architecture design, initial DOT parsing exploration, graph analysis planning, and documentation framework.</td>
                                     </tr>
                                     <tr>
                                         <td class="phase-label">Summer</td>
