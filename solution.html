@@ -93,6 +93,26 @@
                 left: 0;
                 color: #fed136;
             }
+            .req-card {
+                background: #fff;
+                border-left: 4px solid #fed136;
+                border-radius: 0.35rem;
+                padding: 1.25rem 1.5rem;
+                margin-bottom: 1.25rem;
+                box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+            }
+            .req-card h5 {
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 700;
+                text-transform: uppercase;
+                font-size: 0.95rem;
+                color: #212529;
+                margin-bottom: 0.5rem;
+            }
+            .req-card p {
+                margin-bottom: 0;
+                font-size: 1rem;
+            }
         </style>
     </head>
     <body id="page-top">
@@ -131,9 +151,19 @@
                 <div class="row justify-content-center">
                     <div class="col-lg-10">
 
-                        <p class="lead-text">MidGARD is a Rust command-line tool suite that transforms TLA+ formal specifications into actionable regression test plans. As its name indicates&mdash;Model-initiated di-Graph Analysis for Regression Deployment&mdash;the process is <strong>model-initiated</strong>: the TLA+ specification model is what drives and initiates the entire pipeline, from graph generation through test sequence output. This bridges the gap between formal verification and practical test engineering by automating the creation of scientifically derived test sequences from mathematically verified models.</p>
+                        <p class="lead-text">
+                            MidGARD is a Rust command-line tool suite that transforms TLA+ formal specifications into 
+                            actionable regression test plans. The process is model-driven: the TLA+ specification guides 
+                            the pipeline from model checking and graph generation through test sequence output. This 
+                            bridges the gap between formal modeling and practical test engineering by automating the 
+                            creation of test sequences from formally specified and model-checked system behavior.
+                        </p>
 
-                        <p>The tool addresses a core challenge at SanDisk: the directed graphs generated from TLA+ specifications contain an enormous (effectively infinite) number of possible test paths, far too many for any human engineer to enumerate or evaluate. MidGARD replaces intuition-driven test planning with algorithmic analysis, producing a finite, high-confidence set of test sequences that cover the state space comprehensively.</p>
+                        <p>
+                            The tool addresses a core challenge at SanDisk: even when a generated state graph is finite, 
+                            cycles and branching behavior can produce an extremely large number of possible execution paths. 
+                            These paths are too numerous for engineers to enumerate or evaluate manually. MidGARD replaces intuition-driven test planning with algorithmic analysis, producing a finite, high-confidence set of test sequences that cover the state space comprehensively.
+                        </p>
 
                         <!-- System Architecture -->
                         <h3 class="section-heading text-uppercase">System Architecture</h3>
@@ -153,7 +183,7 @@
                                     <tr>
                                         <td class="stage-num">1</td>
                                         <td class="stage-name">Model Checking</td>
-                                        <td>Accepts a TLA+ specification and invokes the TLC model checker as a subprocess. If the specification passes verification, TLC generates a Graphviz DOT file encoding the full state-transition digraph. For specifications with large state spaces, VIEW and ALIAS abstractions can be applied to reduce complexity before DOT generation.</td>
+                                        <td>Accepts a TLA+ specification and invokes the TLC model checker as a subprocess. If the specification is successfully model checked, TLC generates a Graphviz DOT file representing the explored state-transition graph. For specifications with large state spaces, VIEW and ALIAS abstractions can be applied to reduce complexity before DOT generation.</td>
                                     </tr>
                                     <tr>
                                         <td class="stage-num">2</td>
@@ -193,98 +223,104 @@
                         </div>
 
                         <!-- Technologies -->
-                        <section class="content-section" id="technologies">
-                            <div class="container">
-                                <div class="row justify-content-center">
-                                    <div class="col-lg-10">
+                        <br>
+                        <br>
+                        <div class="container">
+                            <div class="row justify-content-center">
+                                <div class="col-lg-10">
 
-                                        <h2 class="section-heading text-uppercase mb-4">Technologies</h2>
+                                    <h2 class="section-heading text-uppercase mb-4">Technologies</h2>
 
-                                        <p class="lead-text mb-4">
-                                            MidGARD is built using a focused set of tools chosen for their reliability, performance, 
-                                            and support for formal modeling and graph‑based analysis. Each technology plays a specific 
-                                            role in enabling automated test generation from TLA+ specifications.
+                                    <p class="lead-text mb-4">
+                                        MidGARD is built using a focused set of tools chosen for their reliability, performance, 
+                                        and support for formal modeling and graph‑based analysis. Each technology plays a specific 
+                                        role in enabling automated test generation from TLA+ specifications.
+                                    </p>
+
+                                    <!-- TLA+ -->
+                                    <div class="req-card">
+                                        <h5><i class="fas fa-code-branch text-primary me-2"></i>TLA+ Formal Specification Language</h5>
+                                        <p>
+                                            We use TLA+ to formally describe system behavior in a mathematically precise way, ensuring 
+                                            that all generated tests originate from verified system logic. The VSCode TLA+ extension 
+                                            supports authoring, validating, and maintaining these specifications throughout development.
                                         </p>
+                                    </div>
 
-                                        <!-- TLA+ -->
-                                        <div class="req-card">
-                                            <h5><i class="fas fa-code-branch text-primary me-2"></i>TLA+ Formal Specification Language</h5>
-                                            <p>
-                                                We use TLA+ to formally describe system behavior in a mathematically precise way, ensuring 
-                                                that all generated tests originate from verified system logic. The VSCode TLA+ extension 
-                                                supports authoring, validating, and maintaining these specifications throughout development.
-                                            </p>
-                                        </div>
+                                    <!-- Rust -->
+                                    <div class="req-card">
+                                        <h5><i class="fas fa-gears text-primary me-2"></i>Rust Programming Language</h5>
+                                        <p>
+                                            Rust powers the MidGARD toolchain, giving us memory‑safe performance for graph processing 
+                                            and deterministic test generation. Cargo and the <em>petgraph</em> crate allow us to build 
+                                            a modular, efficient pipeline capable of handling large state spaces.
+                                        </p>
+                                    </div>
 
-                                        <!-- Rust -->
-                                        <div class="req-card">
-                                            <h5><i class="fas fa-gears text-primary me-2"></i>Rust Programming Language</h5>
-                                            <p>
-                                                Rust powers the MidGARD toolchain, giving us memory‑safe performance for graph processing 
-                                                and deterministic test generation. Cargo and the <em>petgraph</em> crate allow us to build 
-                                                a modular, efficient pipeline capable of handling large state spaces.
-                                            </p>
-                                        </div>
+                                    <!-- TLC -->
+                                    <div class="req-card">
+                                        <h5><i class="fas fa-check-circle text-primary me-2"></i>TLC Model Checker (OpenJDK ≥ 11.0.6)</h5>
+                                        <p>
+                                            TLC explores all valid behaviors of a TLA+ specification and produces the raw state graph 
+                                            that MidGARD analyzes. We run TLC using OpenJDK to ensure compatibility, reproducibility, 
+                                            and freedom from Oracle licensing restrictions.
+                                        </p>
+                                    </div>
 
-                                        <!-- TLC -->
-                                        <div class="req-card">
-                                            <h5><i class="fas fa-check-circle text-primary me-2"></i>TLC Model Checker (OpenJDK ≥ 11.0.6)</h5>
-                                            <p>
-                                                TLC explores all valid behaviors of a TLA+ specification and produces the raw state graph 
-                                                that MidGARD analyzes. We run TLC using OpenJDK to ensure compatibility, reproducibility, 
-                                                and freedom from Oracle licensing restrictions.
-                                            </p>
-                                        </div>
+                                    <!-- Graphviz -->
+                                    <div class="req-card">
+                                        <h5><i class="fas fa-project-diagram text-primary me-2"></i>Graphviz & DOT Visualization</h5>
+                                        <p>
+                                            Graphviz generates the DOT graphs that represent system state transitions, which we then 
+                                            clean and analyze inside MidGARD. The Graphviz Interactive Preview extension helps us 
+                                            inspect and validate graph structure during development.
+                                        </p>
+                                    </div>
 
-                                        <!-- Graphviz -->
-                                        <div class="req-card">
-                                            <h5><i class="fas fa-project-diagram text-primary me-2"></i>Graphviz & DOT Visualization</h5>
-                                            <p>
-                                                Graphviz generates the DOT graphs that represent system state transitions, which we then 
-                                                clean and analyze inside MidGARD. The Graphviz Interactive Preview extension helps us 
-                                                inspect and validate graph structure during development.
-                                            </p>
-                                        </div>
+                                    <!-- VSCode -->
+                                    <div class="req-card">
+                                        <h5><i class="fas fa-laptop-code text-primary me-2"></i>Visual Studio Code & Extensions</h5>
+                                        <p>
+                                            VSCode is our primary development environment, supported by Rust‑Analyzer, TLA+, Graphviz 
+                                            Preview, and Live Share. These tools streamline collaboration, debugging, and consistent 
+                                            development across the team.
+                                        </p>
+                                    </div>
 
-                                        <!-- VSCode -->
-                                        <div class="req-card">
-                                            <h5><i class="fas fa-laptop-code text-primary me-2"></i>Visual Studio Code & Extensions</h5>
-                                            <p>
-                                                VSCode is our primary development environment, supported by Rust‑Analyzer, TLA+, Graphviz 
-                                                Preview, and Live Share. These tools streamline collaboration, debugging, and consistent 
-                                                development across the team.
-                                            </p>
-                                        </div>
-
-                                        <!-- Cargo Tools -->
-                                        <div class="req-card">
-                                            <h5><i class="fas fa-boxes text-primary me-2"></i>Cargo Tooling & Rust Ecosystem</h5>
-                                            <p>
-                                                We rely on Cargo extensions and Rust’s ecosystem to manage dependencies, run tests, and 
-                                                support graph‑analysis workflows. This tooling keeps the codebase maintainable and ready 
-                                                for future extensions.
-                                            </p>
-                                        </div>
+                                    <!-- Cargo Tools -->
+                                    <div class="req-card">
+                                        <h5><i class="fas fa-boxes text-primary me-2"></i>Cargo Tooling & Rust Ecosystem</h5>
+                                        <p>
+                                            We rely on Cargo extensions and Rust’s ecosystem to manage dependencies, run tests, and 
+                                            support graph‑analysis workflows. This tooling keeps the codebase maintainable and ready 
+                                            for future extensions.
+                                        </p>
                                     </div>
                                 </div>
                             </div>
-                        </section>
-
-                        <!-- Open Questions -->
-                        <h3 class="section-heading text-uppercase">Open Questions &amp; Future Refinement</h3>
-
-                        <p>As MidGARD is still in early development (Spring 2026), several design questions remain open and will be refined through client collaboration and experimentation:</p>
-
-                        <div class="mt-3 mb-3">
-                            <p class="open-q">What precisely defines &ldquo;distinct&rdquo; between two test sequences? Edge overlap, node coverage, loop participation, or a composite metric?</p>
-                            <p class="open-q">Should the test set be static (fixed once generated) or should there be a dynamic/randomized element that changes across runs?</p>
-                            <p class="open-q">What additional metadata or constraints might accompany the digraph (e.g., edge weights, priority nodes, forbidden paths)?</p>
-                            <p class="open-q">How should the system handle graphs that are too large for exhaustive analysis? What approximation strategies are acceptable?</p>
-                            <p class="open-q">What output formats best integrate with SanDisk&rsquo;s existing regression deployment infrastructure?</p>
                         </div>
 
-                        <p>These questions will be addressed iteratively through the Spring requirements phase, with the goal of having firm answers before full implementation begins in Fall 2026.</p>
 
+                        <!-- Open Questions -->
+                        <h3 class="section-heading text-uppercase">Current Refinements & Future Enhancements</h3>
+
+                        <p>
+                            As MidGARD moves toward final implementation and sponsor handoff, several areas remain 
+                            important for refinement and possible future extension:
+                        </p>
+
+                        <div class="mt-3 mb-3">
+                            <p class="open-q">Refining the definition of “distinct” test sequences using edge overlap, node coverage, loop participation, or a composite graph metric.</p>
+                            <p class="open-q">Improving support for very large graphs through abstraction, filtering, or approximation strategies when exhaustive analysis is not practical.</p>
+                            <p class="open-q">Finalizing output formats such as CSV and JSON so generated test sequences can be integrated into SanDisk’s testing workflows.</p>
+                            <p class="open-q">Adding optional metadata to generated tests, such as coverage summaries, priority nodes, or path constraints.</p>
+                            <p class="open-q">Exploring a time-permitting AI-assisted feature that could translate generated test sequences into more readable action steps for test engineers.</p>
+                        </div>
+
+                        <p>
+                            These refinements will continue to be evaluated through sponsor feedback, technical testing, 
+                            and final documentation as the team prepares MidGARD for delivery.
+                        </p>
                     </div>
                 </div>
             </div>
